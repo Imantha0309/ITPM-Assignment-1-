@@ -1,24 +1,21 @@
 ```md
 # ITPM Assignment 1 — SwiftTranslator Test Automation (Option 1)
 
-Automated testing for **Singlish → Sinhala** conversion on:
+Automated functional + UI testing for **Singlish → Sinhala** translation using **Playwright** on:  
 https://www.swifttranslator.com/
 
-Tooling: **Playwright Test**
+## What this repo does
+- Runs **24 Positive functional scenarios** (expected **Pass**)
+- Runs **14 Negative functional scenarios** (expected **Fail** to show incorrect behavior)
+- Runs **1 UI scenario** (`UI_0001`) to test UI stability (rapid swap)
 
-This project runs:
-- **24 Positive functional scenarios** (expected Pass)
-- **14 Negative functional scenarios** (expected Fail / incorrect behavior evidence)
-- **1 UI scenario** (`UI_0001`) — rapid Swap button stress test
-
-It generates:
-- **CSV report** (assignment template columns)
-- **Screenshots evidence** (Fail-only + UI)
+Generates:
+- ✅ CSV report (assignment template columns)
+- ✅ Screenshots evidence (Fail-only + UI)
 
 ---
 
-## Project Structure (expected)
-
+## Project structure
 ```
 
 ITPM assaingnment 1/
@@ -37,11 +34,11 @@ ui/
 
 ---
 
-## Prerequisites
+## Requirements
 - **Node.js 18+** recommended
 - Windows PowerShell / Terminal
 
-Check versions:
+Check:
 ```bash
 node -v
 npm -v
@@ -49,31 +46,29 @@ npm -v
 
 ---
 
-## Install Dependencies
+## Install
 
-### 1) Initialize npm (only if you don’t have package.json)
+From the project root:
 
-Run in the project root:
+1. (Optional) Create `package.json` if missing:
 
 ```bash
 npm init -y
 ```
 
-### 2) Install Playwright Test
+2. Install Playwright Test:
 
 ```bash
 npm i -D @playwright/test
 ```
 
-### 3) Install Playwright browser binaries
-
-Install all browsers:
+3. Install browsers:
 
 ```bash
 npx playwright install
 ```
 
-Or install only Chromium (recommended):
+Or Chromium only (recommended):
 
 ```bash
 npx playwright install chromium
@@ -81,15 +76,15 @@ npx playwright install chromium
 
 ---
 
-## Run Tests (recommended)
+## Run tests (recommended)
 
-Run Chromium only with 1 worker for stability:
+Run **Chromium only** with **1 worker** (most stable):
 
 ```bash
 npx playwright test --project=chromium --workers=1
 ```
 
-Optional: view the HTML report:
+Optional: open Playwright HTML report:
 
 ```bash
 npx playwright show-report
@@ -97,17 +92,17 @@ npx playwright show-report
 
 ---
 
-## Outputs (after running)
+## Outputs
 
-### CSV Report
+After running:
 
-Generated at:
+### CSV report
 
 ```
 reports/translator-results.csv
 ```
 
-Columns match assignment template:
+Columns match the assignment template:
 
 * TC ID
 * Test case name
@@ -119,7 +114,7 @@ Columns match assignment template:
 * Accuracy justification/ Description of issue type
 * What is covered by the test
 
-### Screenshots Evidence
+### Screenshots (evidence)
 
 Fail-only functional screenshots:
 
@@ -127,7 +122,7 @@ Fail-only functional screenshots:
 screenshots/fails/
 ```
 
-For each failing TC:
+Files:
 
 * `{TC_ID}-FAIL.png` (full page)
 * `{TC_ID}-input.png` (input close-up)
@@ -139,16 +134,18 @@ UI screenshot:
 screenshots/ui/
 ```
 
+File:
+
 * `UI_0001-Pass.png` or `UI_0001-Fail.png`
 
 ---
 
-## Files to Edit
+## Where to edit
 
-* Functional scenarios dataset:
+* Test scenarios list:
 
-  * `cases.option1.js`
-* Automation + CSV + screenshots + UI test:
+  * `cases.option1.js` (24 Pos + 14 Neg)
+* Playwright automation + CSV + screenshots + UI scenario:
 
   * `tests/translator.spec.js`
 
@@ -156,11 +153,11 @@ screenshots/ui/
 
 ## Troubleshooting
 
-### Cannot find module '../cases.option1.js'
+### ❌ Cannot find module '../cases.option1.js'
 
-Ensure `cases.option1.js` is in the project root (same level as `package.json`).
+Make sure `cases.option1.js` is in the project root (same level as `package.json`).
 
-### Cannot use --browser option when configuration file defines projects
+### ❌ Cannot use --browser option when configuration file defines projects
 
 Use:
 
@@ -168,11 +165,15 @@ Use:
 npx playwright test --project=chromium
 ```
 
-NOT `--browser=chromium`.
+NOT:
 
-### Flaky runs / page closes
+```bash
+npx playwright test --browser=chromium
+```
 
-Use single worker:
+### ❌ Flaky run / page closes / timeouts
+
+Use a single worker:
 
 ```bash
 npx playwright test --project=chromium --workers=1
@@ -180,4 +181,10 @@ npx playwright test --project=chromium --workers=1
 
 ---
 
+## Note about Negative scenarios
 
+Negative scenarios are intentionally designed to expose incorrect conversions.
+If the translator improves and some Neg tests start passing, update Neg inputs/expected outputs to keep **14 failures** required by the assignment.
+
+```
+```
