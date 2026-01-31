@@ -1,20 +1,18 @@
-# ITPM-Assignment-1
-# SwiftTranslator Playwright Automation (Option 1 — Singlish → Sinhala)
+# ITPM Assignment 1 — SwiftTranslator Test Automation (Option 1)
 
-This repo automates functional + UI test scenarios for:
-https://www.swifttranslator.com/
+Automated testing for: **Singlish → Sinhala** conversion on https://www.swifttranslator.com/  
+Tooling: **Playwright Test**
+
+This project runs:
+- **24 Positive functional scenarios** (expected Pass)
+- **14 Negative functional scenarios** (expected Fail / incorrect behavior evidence)
+- **1 UI scenario** (`UI_0001`) — rapid Swap button stress test
 
 It generates:
-- A CSV report in the assignment template format
-- Screenshots as evidence (FAIL-only + UI test)
+- **CSV report** in assignment template columns
+- **Screenshots** as evidence (Fail-only + UI)
 
 ---
 
-## Prerequisites
-- **Node.js 18+** installed (recommended)
-- Windows PowerShell / Terminal access
+## 1) Project Structure (expected)
 
-Check Node:
-```bash
-node -v
-npm -v
